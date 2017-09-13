@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="details.xsl"?>
+
+<CATALOG>
+	<PLANT>
+		<NAME>
+			<COMMON>Bloodroot</COMMON>
+			<BOTANICAL>Sanguinaria canadensis</BOTANICAL>
+		</NAME>
+		<ZONE>4</ZONE>
+		<LIGHT>Mostly Shady</LIGHT>
+		<PRICE>$100</PRICE>
+		<AVAILABILITY>031599</AVAILABILITY>
+		<PHOTO>images/Flower-Pot-14.jpg</PHOTO>
+		<DETAIL>Bloodroot detail</DETAIL>
+		<SPECIAL>
+			<NEW>yes</NEW>
+			<PROMO>yes</PROMO>
+			<FEATURE>yes</FEATURE>
+		</SPECIAL>
+		<DISPLAY>
+			<FEATURE>yes</FEATURE>
+			<NEW></NEW>
+			<SPECIAL></SPECIAL>
+			<PROMO></PROMO>
+			<GIFT>yes</GIFT>
+		</DISPLAY>
+		<CATEGORY></CATEGORY>
+	</PLANT>
+	<PLANT>
+		<NAME>
+		<COMMON>Columbine</COMMON>
+		<BOTANICAL>Aquilegia canadensis</BOTANICAL>
+		</NAME>
+		<ZONE>3</ZONE>
+		<LIGHT>Mostly Shady</LIGHT>
+		<PRICE>$105</PRICE>
+		<AVAILABILITY>030699</AVAILABILITY>
+		<PHOTO>images/Flower-Pot-22.jpg</PHOTO>
+		<DETAIL>Columbine detail</DETAIL>
+		<SPECIAL>
+			<NEW>yes</NEW>
+			<PROMO>no</PROMO>
+			<FEATURE>yes</FEATURE>
+			<GIFT>yes</GIFT>
+		</SPECIAL>
+		<CATEGORY></CATEGORY>
+	</PLANT>
+	<PLANT>
+	<NAME>
+		<COMMON>Marsh Marigold</COMMON>
+		<BOTANICAL>Caltha palustris</BOTANICAL>
+		</NAME>
+		<ZONE>4</ZONE>
+		<LIGHT>Mostly Sunny</LIGHT>
+		<PRICE>$110</PRICE>
+		<AVAILABILITY>051799</AVAILABILITY>
+				<PHOTO>images//Flower-Vase-16.jpg</PHOTO>
+		<DETAIL>Marsh Marigold detail</DETAIL>
+		<SPECIAL>
+			<NEW>yes</NEW>
+			<PROMO>no</PROMO>
+			<FEATURE>yes</FEATURE>
+			<GIFT>no</GIFT>
+		</SPECIAL>
+		<CATEGORY></CATEGORY>
+	</PLANT>
+	<PLANT>
+	<NAME>
+		<COMMON>Cowslip</COMMON>
+		<BOTANICAL>Caltha palustris</BOTANICAL>
+		</NAME>
+		<ZONE>4</ZONE>
+		<LIGHT>Mostly Shady</LIGHT>
+		<PRICE>$115</PRICE>
+		<AVAILABILITY>030699</AVAILABILITY>
+		<PHOTO>images/Flower-Vase-17.jpg</PHOTO>
+		<DETAIL>Cowslip detail</DETAIL>
+		<SPECIAL>
+			<NEW>yes</NEW>
+			<PROMO>no</PROMO>
+			<FEATURE>no</FEATURE>
+			<GIFT>no</GIFT>
+		</SPECIAL>
+		<CATEGORY></CATEGORY>
+	</PLANT>
+	<PLANT>
+	<NAME>
+		<COMMON>Dutchman s-Breeches</COMMON>
+		<BOTANICAL>Dicentra cucullaria</BOTANICAL>
+		</NAME>
+		<ZONE>3</ZONE>
+		<LIGHT>Mostly Shady</LIGHT>
+		<PRICE>$120</PRICE>
+		<AVAILABILITY>012099</AVAILABILITY>
+		<PHOTO>images/Flower-Vase-19.jpg</PHOTO>
+		<DETAIL>Dutchman's-Breeches detail</DETAIL>
+		<SPECIAL>
+			<NEW>yes</NEW>
+			<PROMO>no</PROMO>
+			<FEATURE>no</FEATURE>
+			<GIFT>yes</GIFT>
+		</SPECIAL>
+		<CATEGORY></CATEGORY>
+	</PLANT>
+	<PLANT>
+	<NAME>
+		<COMMON>Ginger Wild</COMMON>
+		<BOTANICAL>Asarum canadense</BOTANICAL>
+		</NAME>
+		<ZONE>3</ZONE>
+		<LIGHT>Mostly Shady</LIGHT>
+		<PRICE>$125</PRICE>
+		<AVAILABILITY>041899</AVAILABILITY>
+		<PHOTO>images/Flower-Vase-23.jpg</PHOTO>
+		<DETAIL>Ginger, Wild detail</DETAIL>
+		<SPECIAL>
+			<NEW>no</NEW>
+			<PROMO>yes</PROMO>
+			<FEATURE>no</FEATURE>
+			<GIFT>no</GIFT>
+		</SPECIAL>
+		<CATEGORY></CATEGORY>
+	</PLANT>
+	<PLANT>
+	<NAME>
+		<COMMON>Hepatica</COMMON>
+		<BOTANICAL>Hepatica americana</BOTANICAL>
+		</NAME>
+		<ZONE>4</ZONE>
+		<LIGHT>Mostly Shady</LIGHT>
+		<PRICE>$130</PRICE>
+		<AVAILABILITY>012699</AVAILABILITY>
+		<PHOTO>images/Flower-Vase-29.jpg</PHOTO>
+		<DETAIL>Hepatica detail</DETAIL>
+		<SPECIAL>
+			<NEW>yes</NEW>
+			<PROMO>no</PROMO>
+			<FEATURE>no</FEATURE>
+			<GIFT>yes</GIFT>
+		</SPECIAL>
+		<CATEGORY></CATEGORY>
+	</PLANT>
+	<PLANT>
+	<NAME>
+		<COMMON>Liverleaf</COMMON>
+		<BOTANICAL>Hepatica americana</BOTANICAL>
+		</NAME>
+		<ZONE>4</ZONE>
+		<LIGHT>Mostly Shady</LIGHT>
+		<PRICE>$135</PRICE>
+		<AVAILABILITY>010299</AVAILABILITY>
+		<PHOTO>images/Flower-Vase-30.jpg</PHOTO>
+		<DETAIL>Liverleaf detail</DETAIL>
+		<SPECIAL>
+			<NEW>no</NEW>
+			<PROMO>no</PROMO>
+			<FEATURE>no</FEATURE>
+			<GIFT>yes</GIFT>
+		</SPECIAL>
+		<CATEGORY></CATEGORY>
+	</PLANT>
+	<PLANT>
+	<NAME>
+		<COMMON>Jack-In-The-Pulpit</COMMON>
+		<BOTANICAL>Arisaema triphyllum</BOTANICAL>
+		</NAME>
+		<ZONE>4</ZONE>
+		<LIGHT>Mostly Shady</LIGHT>
+		<PRICE>$140</PRICE>
+		<AVAILABILITY>020199</AVAILABILITY>
+		<PHOTO>images/Flower-Vase-32.jpg</PHOTO>
+		<DETAIL>Jack-In-The-Pulpit detail</DETAIL>
+		<SPECIAL>
+			<NEW>yes</NEW>
+			<PROMO>no</PROMO>
+			<FEATURE>no</FEATURE>
+			<GIFT>yes</GIFT>
+		</SPECIAL>
+		<CATEGORY></CATEGORY>
+	</PLANT>
+	<PLANT>
+	<NAME>
+		<COMMON>Mayapple</COMMON>
+		<BOTANICAL>Podophyllum peltatum</BOTANICAL>
+		</NAME>
+		<ZONE>3</ZONE>
+		<LIGHT>Mostly Shady</LIGHT>
+		<PRICE>$145</PRICE>
+		<AVAILABILITY>060599</AVAILABILITY>
+		<PHOTO>images/Flower-Pot-30.jpg</PHOTO>
+		<DETAIL>Mayapple detail</DETAIL>
+		<SPECIAL>
+			<NEW>yes</NEW>
+			<PROMO>yes</PROMO>
+			<FEATURE>no</FEATURE>
+			<GIFT>yes</GIFT>
+		</SPECIAL>
+		<CATEGORY></CATEGORY>
+	</PLANT>
+	<PLANT>
+	<NAME>
+		<COMMON>Phlox, Woodland</COMMON>
+		<BOTANICAL>Phlox divaricata</BOTANICAL>
+		</NAME>
+		<ZONE>3</ZONE>
+		<LIGHT>Sun or Shade</LIGHT>
+		<PRICE>$150</PRICE>
+		<AVAILABILITY>012299</AVAILABILITY>
+		
+	</PLANT>
+	<PLANT>
+	<NAME>
+		<COMMON>Phlox, Blue</COMMON>
+		<BOTANICAL>Phlox divaricata</BOTANICAL>
+		</NAME>
+		<ZONE>3</ZONE>
+		<LIGHT>Sun or Shade</LIGHT>
+		<PRICE>$155</PRICE>
+		<AVAILABILITY>021699</AVAILABILITY>
+	</PLANT>
+</CATALOG>

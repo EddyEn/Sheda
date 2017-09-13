@@ -1,0 +1,4 @@
+READ ME
+
+//XML is used to store data for a human
+//JSON is used to store data for a machine.
