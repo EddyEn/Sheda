@@ -114,32 +114,66 @@ function urlVal(val) {
 	return result;
 }
 
-function storeDataStep1(id){
-	savePage(id);
-	renderdHtml = restorePage();
+function saveDataStep1(id){
+	savePage(id, "reg1");
+	restorePage("testArea");
 	
 	// go to page 2
 }
-function storeDataStep2(){
+//function storeDataStep2(divHolderName){
+	//document.getElementById(divHolderName).innerHTML = restorePage().html
+//}
 
-}
-
-function savePage(id) {
+function savePage(id,formRegion) {
     if (!sessionStorage)
         return;
-    
-    var data = {
+		
+	//Save all input data in the specific DIV
+	var ancestor = document.getElementById(formRegion),
+    descendents = ancestor.getElementsByTagName('*');
+	
+	var i, e;
+	for (i = 0; i < descendents.length; ++i) {
+		e = descendents[i];
+		e.removeAttribute('style');
+		e.removeAttribute('width');
+		e.removeAttribute('align');
+		if (e.tagName == 'INPUT') {
+			//Save into local storage
+			sessionStorage.setItem(e.id, e.value);
+		}
+	}	
+	//Save all HTML elements in the specific DIV
+    var formHTML = {
         id: id,
-        html: $("#reg1").html()
+       // html: $(eval('#'+formRegion)).html()
+	   html: $(eval('"#' + formRegion + '"')).html()
     };
-    sessionStorage.setItem("reg1",JSON.stringify(data));
+	//Save into local storag
+    sessionStorage.setItem("reg1",JSON.stringify(formHTML));
 };
 
-function restorePage() {
+function restorePage(divHolderName) {
     if (!sessionStorage)
-        return;    
+        return;
+		
     var data = sessionStorage.getItem("reg1");
     if (!data)
         return null;
-    return JSON.parse(data);
+		
+    var formData = JSON.parse(data);
+	var HtmlStr = String(formData.html);
+	var newHtml = HtmlStr.replace("userName","userNameGen");
+	newHtml = newHtml.replace("password","passwordGen");
+	newHtml = newHtml.replace("message","messageGen");
+	
+	//Find the right key.
+	//for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+	//	console.log( localStorage.getItem( localStorage.key( i ) ) );
+	//}
+	document.getElementById(divHolderName).innerHTML= newHtml;
+	document.getElementById("messageGen").innerHTML = "These fields and values are stored in sessionStorage and then are retrieved back.";
+	document.getElementById("userNameGen").value = sessionStorage.userName;
+	document.getElementById("passwordGen").value = sessionStorage.password;
+	
 };

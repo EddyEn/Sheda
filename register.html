@@ -14,7 +14,8 @@
             
               	<div class="contact_form">
 					<div class="form_subtitle">Step 1</div>
-					<div id="reg1">          
+					<div id="reg1"> 
+						<div id="message"></div>
 						<div class="form_row">
 							<label class="contact"><strong>Username:</strong></label>
 							<input type="text" id="userName" class="contact_input" placeholder="Email address" />
@@ -28,12 +29,11 @@
 					</div>    
 					<!-- Button -->
 					<div class="form_row">
-						<input onclick = "storeDataStep1('reg1')" class="register" value="Next >>" />
+						<input onclick = "saveDataStep1('reg1')" class="register" value="Next >>" />
 					</div>  					
                 </div>  
-            
+				<div id = "testArea" class="contact_form"></div>
 			</div>	
-			
         <div class="clear"></div>
         </div><!--end of left content-->       
 
