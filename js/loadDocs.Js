@@ -1,6 +1,6 @@
 var globalXmlHttp;
-const DBSOURCE = "db/products.xml"
-
+const DBSOURCE = "db/products.xml";
+var isDocLoaded = false;
 function asynConnectData(httpCall, page, callback, pageType) {
 	httpCall.open("GET", page, true);
 	httpCall.onreadystatechange = callback;
@@ -8,7 +8,8 @@ function asynConnectData(httpCall, page, callback, pageType) {
 	httpCall.send("");
 }
 
-function loadDoc(page) {
+function loadDoc(page, placeHolderName, afterLoadedFunction) {
+	afterLoadedFunction = afterLoadedFunction || 0;
 	var HttpObject;
 	if (window.ActiveXObject) {
 		//For old IE versions.
@@ -22,36 +23,41 @@ function loadDoc(page) {
 		case "xml":
 			globalXmlHttp = HttpObject; // this will be used when loading XSL to format data from XML.
 			HttpObject.overrideMimeType('text/xml');
-			asynConnectData(HttpObject, DBSOURCE, function () { xmlReady(HttpObject, page) },"xml");
+			asynConnectData(HttpObject, DBSOURCE, function () { xmlReady(HttpObject, page, placeHolderName) },"xml");
 			break;
 		case "xsl":
-			asynConnectData(HttpObject, page, function () { xslReady(HttpObject, page) },"xsl");
+			asynConnectData(HttpObject, page, function () { xslReady(HttpObject, page, placeHolderName) },"xsl");
 			break;
 		default:
-			asynConnectData(HttpObject, page, function () { htmlReady(HttpObject, page) },"html");
+			asynConnectData(HttpObject, page, function () { htmlReady(HttpObject, page, placeHolderName, afterLoadedFunction) },"html");
 	}
 }
 
 // Call back functions when xml file is ready
-function xmlReady(HttpObject, page) {
+function xmlReady(HttpObject, page, placeHolderName) {
 	if (HttpObject.readyState == 4 && HttpObject.status == 200) {
 		var XSLname = "specials.xsl";
 		//load XSL after XML is ready
-		loadDoc(XSLname);
+		loadDoc(XSLname, placeHolderName);
 	}
 }
 
 // Call back functions when html file is ready
-function htmlReady(HttpObject, page) {
+function htmlReady(HttpObject, page, placeHolderName, afterLoadedFunction) {
 	if (HttpObject.readyState == 4 && HttpObject.status == 200) { 
-		document.getElementById("leftContent").innerHTML = '';
-		document.getElementById("leftContent").innerHTML = HttpObject.responseText;
+		document.getElementById(placeHolderName).innerHTML = '';
+		document.getElementById(placeHolderName).innerHTML = HttpObject.responseText;
 		setMenuMarker(page); // Highlight on the selected page.
+		if(afterLoadedFunction==0){
+			return;
+		}else{
+			afterLoadedFunction();
+		}
 	}
 }
 
 // Call back functions when xsl file is ready
-function xslReady(HttpObject, page) {
+function xslReady(HttpObject, page, placeHolderName) {
 	if (HttpObject.readyState == 4 && HttpObject.status == 200) {
 		if (document.implementation && document.implementation.createDocument) {
 			xsltProcessor = new XSLTProcessor();
@@ -59,12 +65,11 @@ function xslReady(HttpObject, page) {
 			//Apply XSL to XML
 			resultDocument = xsltProcessor.transformToFragment(globalXmlHttp.responseXML, document);
 			globalXmlHttp = null; // Clear global object after using
-			var left = document.getElementById("leftContent");
+			var left = document.getElementById(placeHolderName);
 			setMenuMarker(page); // Highlight on the selected page.
 			left.innerHTML = ''; //clear old content before displaying a new one
 			left.appendChild(resultDocument);
 		}
-
 	}
 }
 
@@ -83,10 +88,12 @@ function setMenuMarker(page) {
 function getPageFormURL() {
 	var lpage = location.hash.substring(2); //take 2 chars out from the start position. take "#" out of the url query string
 	if (lpage == "") {
-		loadDoc("home.html");
-		return;
+		loadDoc("home.html", "leftContent" );
+	}else if(urlVal("#?page") == "review.html"){
+		loadDoc(urlVal("#?page"), "leftContent", genReviewForm);
+	}else{
+		loadDoc(urlVal("#?page"), "leftContent");
 	}
-	loadDoc(urlVal("#?page"));
 }
 
 function getPageTypeName(pageName, typeOrName) {
@@ -114,66 +121,3 @@ function urlVal(val) {
 	return result;
 }
 
-function saveDataStep1(id){
-	savePage(id, "reg1");
-	restorePage("testArea");
-	
-	// go to page 2
-}
-//function storeDataStep2(divHolderName){
-	//document.getElementById(divHolderName).innerHTML = restorePage().html
-//}
-
-function savePage(id,formRegion) {
-    if (!sessionStorage)
-        return;
-		
-	//Save all input data in the specific DIV
-	var ancestor = document.getElementById(formRegion),
-    descendents = ancestor.getElementsByTagName('*');
-	
-	var i, e;
-	for (i = 0; i < descendents.length; ++i) {
-		e = descendents[i];
-		e.removeAttribute('style');
-		e.removeAttribute('width');
-		e.removeAttribute('align');
-		if (e.tagName == 'INPUT') {
-			//Save into local storage
-			sessionStorage.setItem(e.id, e.value);
-		}
-	}	
-	//Save all HTML elements in the specific DIV
-    var formHTML = {
-        id: id,
-       // html: $(eval('#'+formRegion)).html()
-	   html: $(eval('"#' + formRegion + '"')).html()
-    };
-	//Save into local storag
-    sessionStorage.setItem("reg1",JSON.stringify(formHTML));
-};
-
-function restorePage(divHolderName) {
-    if (!sessionStorage)
-        return;
-		
-    var data = sessionStorage.getItem("reg1");
-    if (!data)
-        return null;
-		
-    var formData = JSON.parse(data);
-	var HtmlStr = String(formData.html);
-	var newHtml = HtmlStr.replace("userName","userNameGen");
-	newHtml = newHtml.replace("password","passwordGen");
-	newHtml = newHtml.replace("message","messageGen");
-	
-	//Find the right key.
-	//for ( var i = 0, len = localStorage.length; i < len; ++i ) {
-	//	console.log( localStorage.getItem( localStorage.key( i ) ) );
-	//}
-	document.getElementById(divHolderName).innerHTML= newHtml;
-	document.getElementById("messageGen").innerHTML = "These fields and values are stored in sessionStorage and then are retrieved back.";
-	document.getElementById("userNameGen").value = sessionStorage.userName;
-	document.getElementById("passwordGen").value = sessionStorage.password;
-	
-};
