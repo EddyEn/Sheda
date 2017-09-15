@@ -1,10 +1,11 @@
-//const IndicatorChar = "Gen";
-
+//** id:= Div or place holder of form controls.
+//** page:= url is used to maintain all fields' data when refresh the page.
+//** isLastStep:= indicates the last form step and direct to the preview page on the next step.
 function nextFormStep(id, page, isLastStep){
 	isLastStep = isLastStep || false;
-	saveHtmlValues(id, id);
-
-	// go to page 2
+	//Save info of the current step.
+	saveHtmlValues(id); 
+	// go to next step
 	window.location.href = "/index.html#?page=" + page;
 	if(isLastStep){
 		loadDoc(page, "leftContent", genReviewForm); 
@@ -13,19 +14,20 @@ function nextFormStep(id, page, isLastStep){
 	}
 }
 
+//Restore fields' values for all form steps.
 function genReviewForm(){
-	//document.getElementById(placeHolder).innerHTML = "";
-	restoreHTMLValues("reg1", "reg1");
-	restoreHTMLValues("reg2", "reg2");
+	for(var key in sessionStorage) {
+		restoreHTMLValues(key)
+	}
 }
 
-function saveHtmlValues(id,formRegion) {
+function saveHtmlValues(formRegionId) {
     if (!sessionStorage)
         return;
 		
-	var savedHTML = $(eval('"#' + formRegion + '"')).html();
+	var savedHTML = $(eval('"#' + formRegionId + '"')).html();
 	//Save all input data in the specific DIV
-	var ancestor = document.getElementById(formRegion),
+	var ancestor = document.getElementById(formRegionId),
     descendents = ancestor.getElementsByTagName('*');
 	
 	var i, e;
@@ -33,20 +35,16 @@ function saveHtmlValues(id,formRegion) {
 	for (i = 0; i < descendents.length; ++i) {
 		e = descendents[i];
 		if (e.tagName == 'INPUT') {
-			//Add special character to indicate items being collected
-			//var newId = e.id ; + IndicatorChar;
-			//Substitute input id with the new one
-			//savedHTML = savedHTML.replace(e.id, newId);
 			formValues[e.id] = readInputValue(e);
 		}
 	}
 	//Save all HTML elements in the specific DIV	
     var formHTML = {
-        id: id,
+        id: formRegionId,
 		html: savedHTML,
 		values: formValues
     };
-    sessionStorage.setItem(formRegion,JSON.stringify(formHTML));
+    sessionStorage.setItem(formRegionId,JSON.stringify(formHTML));
 };
 
 function readInputValue(inputControl){
@@ -77,19 +75,20 @@ function setInputValue(inputControl, val){
 		default:
 	}
 }
-function restoreHTMLValues(page,divHolderName) {
+
+//Restore fields' values for a single form step.
+function restoreHTMLValues(divHolderName) {
     if (!sessionStorage)
         return;
 		
-    var data = sessionStorage.getItem(page);
+    var data = sessionStorage.getItem(divHolderName);
     if (!data)
         return null;
 		
     var formData = JSON.parse(data);
 	var HtmlStr = String(formData.html);
-	//HtmlStr = HtmlStr.replace("message","messageGen");
+	//place html string into the control.
 	document.getElementById(divHolderName).innerHTML= HtmlStr;
-	//document.getElementById("messageGen").innerHTML = "These fields and values are stored in sessionStorage and then are retrieved back.";
 
 	var formValue = formData.values;
 	for (var key in formValue) {

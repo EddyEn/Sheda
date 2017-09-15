@@ -1,13 +1,10 @@
 var globalXmlHttp;
 const DBSOURCE = "db/products.xml";
 var isDocLoaded = false;
-function asynConnectData(httpCall, page, callback, pageType) {
-	httpCall.open("GET", page, true);
-	httpCall.onreadystatechange = callback;
-	try { xmlHttpresponseType = "msxml-document" } catch (err) { } // Helping IE11
-	httpCall.send("");
-}
 
+//** page:= page name that will be loaded into the main or index page.
+//** placeHolderName:= Div or container where the paged will be loaded and put into.
+//** afterLoadedFunction:= (Optional) the function(callback) that will be called after the page is fully loaded.
 function loadDoc(page, placeHolderName, afterLoadedFunction) {
 	afterLoadedFunction = afterLoadedFunction || 0;
 	var HttpObject;
@@ -31,6 +28,14 @@ function loadDoc(page, placeHolderName, afterLoadedFunction) {
 		default:
 			asynConnectData(HttpObject, page, function () { htmlReady(HttpObject, page, placeHolderName, afterLoadedFunction) },"html");
 	}
+}
+
+//Specify a callback function.
+function asynConnectData(httpCall, page, callback, pageType) {
+	httpCall.open("GET", page, true);
+	httpCall.onreadystatechange = callback;
+	try { xmlHttpresponseType = "msxml-document" } catch (err) { } // Helping IE11
+	httpCall.send("");
 }
 
 // Call back functions when xml file is ready
@@ -85,6 +90,7 @@ function setMenuMarker(page) {
 
 }
 
+// this will be called form onload event of the indext page to maintain current view and data when refresh.
 function getPageFormURL() {
 	var lpage = location.hash.substring(2); //take 2 chars out from the start position. take "#" out of the url query string
 	if (lpage == "") {
